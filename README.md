@@ -95,31 +95,31 @@ npm start
 
 ### 🔹 Initial State
 
-![Initial State](output-images/image.png)
+![image](https://github.com/user-attachments/assets/2a62f761-c40f-4575-84e8-d3181128867e)
 
 ---
 
 ### 🔹 Listed Todos
 
-![Listed Tasks](output-images/image-1.png)
+![image](https://github.com/user-attachments/assets/c74636f3-382e-4d60-aea1-31222dcb35e3)
 
 ---
 
 ### 🔹 AI-Generated Summary
 
-![AI Summary](output-images/image-2.png)
+![image](https://github.com/user-attachments/assets/9fd4f5d4-2ba9-48df-97f8-935e0713b103)
 
 ---
 
 ### 🔹 Slack Message
 
-![Slack Output](output-images/image-3.png)
+![image](https://github.com/user-attachments/assets/32b3f9f4-5773-409a-ad1d-4d610e3b11bb)
 
 ---
 
 ### 🔹 Supabase Database Table
 
-![Supabase Table](output-images/image-4.png)
+![image](https://github.com/user-attachments/assets/54890012-be60-4ab1-9323-8984b67166c7)
 
 ---
 
