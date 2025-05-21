@@ -10,23 +10,19 @@ const supabase = createClient(
   process.env.SUPABASE_KEY
 );
 
-
 const app = express();
 app.use(express.json());
 
 const PORT = 3000;
 
-// In-memory list of todos
 let todos = [];
 
-// ✅ GET /todos – fetch all todos
 app.get('/todos', async (req, res) => {
   const { data, error } = await supabase.from('todos').select('*').order('created_at', { ascending: true });
   if (error) return res.status(500).json({ error: error.message });
   res.json(data);
 });
 
-// ✅ POST /todos – add a new todo
 app.post('/todos', async (req, res) => {
   const { task } = req.body;
   if (!task) return res.status(400).json({ error: 'Task is required' });
@@ -37,8 +33,6 @@ app.post('/todos', async (req, res) => {
   res.status(201).json(data);
 });
 
-
-// ✅ DELETE /todos/:id – delete a todo by ID
 app.delete('/todos/:id', async (req, res) => {
   const { id } = req.params;
   const { data, error } = await supabase.from('todos').delete().eq('id', id).select().single();
@@ -47,8 +41,6 @@ app.delete('/todos/:id', async (req, res) => {
   res.json({ message: 'Todo deleted', todo: data });
 });
 
-
-// Test Slack message route (still works)
 app.post('/send-test-message', async (req, res) => {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL;
   const message = { text: '✅ This is a test message from your Todo Summary Assistant!' };
@@ -63,7 +55,7 @@ app.post('/send-test-message', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
 
 app.post('/summarize', async (req, res) => {
@@ -76,7 +68,6 @@ app.post('/summarize', async (req, res) => {
 
     const prompt = `Summarize the following to-do items in a concise and friendly way:\n\n${taskList}`;
     
-    // Gemini API endpoint & headers
     const response = await axios.post('https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent', {
       contents: [
         {
@@ -95,11 +86,9 @@ app.post('/summarize', async (req, res) => {
       }
     });
     
-    // Extract summary from Gemini response
     const summary = response.data.candidates[0].content.parts[0].text;
     
-    // Send summary to Slack webhook
-    await axios.post(process.env.SLACK_WEBHOOK_URL, { text: `📝 To-Do Summary:\n${summary}` });
+    await axios.post(process.env.SLACK_WEBHOOK_URL, { text: `To-Do Summary:\n${summary}` });
     
     res.json({ message: "Summary sent to Slack!", summary });
   } catch (error) {

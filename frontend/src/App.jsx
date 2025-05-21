@@ -44,7 +44,7 @@ function App() {
       setSummary(response.data.summary);
     } catch (err) {
       console.error("Error summarizing todos:", err.message);
-      setSummary("❌ Failed to summarize todos.");
+      setSummary("Failed to summarize todos.");
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>📝 Todo Summary Assistant</h1>
+      <h1>Todo Summary Assistant</h1>
 
       <div className="input-group">
         <input
@@ -72,14 +72,14 @@ function App() {
         {todos.map((t) => (
           <li key={t.id}>
             <span>{t.task}</span>
-            <button onClick={() => deleteTodo(t.id)}>❌</button>
+            <button onClick={() => deleteTodo(t.id)}>Delete</button>
           </li>
         ))}
       </ul>
 
       <div className="summary">
         <button onClick={summarizeTodos} disabled={loading}>
-          {loading ? "Summarizing..." : "🧠 Summarize & Send to Slack"}
+          {loading ? "Summarizing..." : "Summarize & Send to Slack"}
         </button>
 
         {summary && (
