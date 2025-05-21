@@ -65,14 +65,14 @@ function App() {
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
-        <button onClick={addTodo}>➕ Add</button>
+        <button onClick={addTodo}>➕</button>
       </div>
 
       <ul className="todo-list">
         {todos.map((t) => (
           <li key={t.id}>
             <span>{t.task}</span>
-            <button onClick={() => deleteTodo(t.id)}>Delete</button>
+            <button onClick={() => deleteTodo(t.id)}>❌</button>
           </li>
         ))}
       </ul>
